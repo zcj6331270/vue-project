@@ -1,28 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div class="main">meishaonv zhanshi</div>
+  <NavBar></NavBar>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import NavBar from './components/NavBar/index'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavBar
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import './styles/base.scss';
 </style>
