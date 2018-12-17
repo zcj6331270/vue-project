@@ -1,33 +1,50 @@
 // NavBar 组件
 <template>
     <ul class="nav-bar">
-      <li>
-        <img src="./images/films.png" alt="">
-        <span>电影</span>
-      </li>
-      <li>
-        <img src="./images/cinemas.png" alt="">
-        <span>影院</span>
-      </li>
-      <li>
-        <img src="./images/uugroupon.png" alt="">
-        <span>9.9拼团</span>
-      </li>
-      <li>
-        <img src="./images/center.png" alt="">
-        <span>我的</span>
-      </li>
+      <router-link
+        v-for="(item,index) in bars"
+        :key="index"
+        :class="item.id"
+        :to="{ name: item.id }"
+        tag="li"
+        active-class="z-act">
+        <i class="img"></i>
+        <span v-text="item.name"></span>
+      </router-link>
     </ul>
 </template>
 
 <script>
-export default{
-  name: 'NavBar' // 也可以不写，不写就是默认文件名，推荐写
+export default {
+  name: 'NavBar', // 也可以不写，不写就是默认文件名，推荐写
+  data () {
+    return {
+      bars: [
+        {
+          id: 'Films',
+          name: '电影'
+        },
+        {
+          id: 'Cinema',
+          name: '影院'
+        },
+        {
+          id: 'Booking',
+          name: '9.9拼团'
+        },
+        {
+          id: 'Center',
+          name: '我的'
+        }
+      ]
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../styles/common/px2rem.scss';
+
 .nav-bar {
   flex-shrink: 0; // 不受兄弟压缩
   display: flex;

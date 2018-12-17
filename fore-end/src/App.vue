@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-  <div class="main">meishaonv zhanshi</div>
-  <NavBar></NavBar>
+  <!-- <div class="main">meishaonv zhanshi</div> -->
+    <router-view></router-view>
+    <!-- <NavBar></NavBar> -->
   </div>
 </template>
 
@@ -17,4 +18,5 @@ export default {
 
 <style lang="scss">
 @import './styles/base.scss';
+
 </style>
