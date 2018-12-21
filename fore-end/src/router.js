@@ -30,15 +30,15 @@ const router = new VueRouter({
           children: [
             {
               // nowplay 页
-              path: 'Nowplay',
-              name: 'Nowplay',
-              compontent: () => import('./components/NowPlay/index.vue')
+              path: 'NowPlay',
+              name: 'NowPlay',
+              component: () => import('./components/NowPlay/index.vue')
             },
             {
               // SoonPlay 页
               path: 'SoonPlay',
               name: 'SoonPlay',
-              compontent: () => import('./components/SoonPlay/index.vue')
+              component: () => import('./components/SoonPlay/index.vue')
             }
           ]
         },
@@ -64,13 +64,76 @@ const router = new VueRouter({
     },
     // 详情页
     {
-      path: '/Filmdetail',
-      component: () => import('./views/Filmdetail.vue')
+      path: '/Films/:filmId',
+      name: 'FilmDetail',
+      component: () => import('./views/FilmDetail.vue')
+      // beforeEnter (to, from, next) {
+      //   next()
+      // }
     },
     // 用户页
     {
       path: '/User',
-      component: () => import('./views/User.vue')
+      component: {
+        template: `
+        <div>
+          <router-view></router-view>
+        </div>
+      `
+      },
+      children: [
+        {
+          path: 'Card',
+          name: 'Card',
+          component: () => import('./views/card.vue'),
+          beforeEnter (to, from, next) {
+            // 判断是否登录，如果没有登录的话，跳转到登录页
+            if (localStorage.getItem('username')) {
+              next()
+            } else {
+              // 注意，如果需要实现，拦截到登陆页面之后，登录成功回跳到那个页面。
+              // localStorage.setItem('myNeedPage', '/user/card');
+              // next('/user/login');
+              console.log(to.fullPath);
+              next({
+                path: '/User/Login',
+                query: {
+                  // 登录完成之后重新跳回登录之前的页面,而不是跳到登录页面
+                  redirect: to.fullPath
+                }
+              })
+            }
+          }
+        },
+        {
+          path: 'Login',
+          name: 'Login',
+          component: () => import('./views/Login.vue'),
+          beforeEnter (to, from, next) {
+            // 判断是否登录，如果没有登录的话，跳转到登录页
+            if (localStorage.getItem('username')) {
+              next()
+            } else {
+              // 注意，如果需要实现，拦截到登陆页面之后，登录成功回跳到那个页面。
+              // localStorage.setItem('myNeedPage', '/user/card');
+              // next('/user/login');
+              console.log(to.fullPath);
+              next({
+                path: '/User/Login',
+                query: {
+                  // 登录完成之后重新跳回登录之前的页面,而不是跳到登录页面
+                  redirect: to.fullPath
+                }
+              })
+            }
+          }
+        }
+      ]
+    },
+    {
+      path: '/shopCar',
+      name: 'shopCar',
+      component: () => import('./views/shopCar.vue')
     },
     {
       path: '*',

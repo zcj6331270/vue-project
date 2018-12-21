@@ -1,8 +1,15 @@
 <template>
   <div id="app">
   <!-- <div class="main">meishaonv zhanshi</div> -->
+   <transition
+    mode="out-in"
+    appear
+    enter-active-class="animate bounceInUp"
+    leave-active-class="animate bounceOutDown"
+    >
+    <!-- 底部组件的坑 -->
     <router-view></router-view>
-    <!-- <NavBar></NavBar> -->
+    </transition>
   </div>
 </template>
 

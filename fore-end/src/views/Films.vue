@@ -14,33 +14,45 @@
       <i class="iconfont icon-xiala"></i>
     </div>
     <!-- /定位城市 -->
-
     <!-- tab-bar -->
     <div class="tab-bar-wrapper">
       <ul class="tab-bar">
-        <li :class="{'z-act': $route.path === '/films/NowPlaying'}" @click="switchList('now')">
+        <li :class="{'z-act': $route.path === '/Films/NowPlay'}" @click="switchList('NowPlay')">
           <span>正在热映</span>
         </li>
-        <li :class="{'z-act': $route.path === '/films/SoonPlay'}" @click="switchList('soon')">
+        <li :class="{'z-act': $route.path === '/Films/SoonPlay'}" @click="switchList('SoonPLAY')">
           <span>即将上映</span>
         </li>
       </ul>
     </div>
     <!-- /tab-bar -->
-
+    <!-- <router-view name="NowPlay"></router-view> -->
     <router-view></router-view>
 
   </div>
 </template>
-
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=123456.ZCJ"></script>
 <script>
+
 import Vue from 'vue'
 import { Swipe, SwipeItem } from 'vant';
 
 Vue.use(Swipe).use(SwipeItem);
 
 export default {
-  name: 'Films'
+  name: 'Films',
+  // 切换路由
+  methods: {
+    switchList (type) {
+      if (type === 'NowPlay') {
+        this.$router.push({
+          name: 'NowPlay'
+        })
+      } else {
+        this.$router.push('/Films/SoonPlay')
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">

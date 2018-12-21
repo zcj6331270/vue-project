@@ -5,7 +5,7 @@
         <i class="iconfont icon-filedicon_my_green_"></i>
       </div>
       <h2>
-        <a href="./login.html">立即登录</a>
+        <router-link to="/User/Login">立即登录</router-link>
       </h2>
     </header>
     <main id="main">
@@ -20,7 +20,7 @@
         </h3>
       </div>
       <div class="ul">
-        <router-link tag="div" class="card" to="/">
+        <router-link tag="div" class="card" to="/User/Card">
           <div class="list">
             <i style="color: rgb(245, 89, 89);" class="iconfont icon-qia01"></i>
             <span>卖座卡</span>
